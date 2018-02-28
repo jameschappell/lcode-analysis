@@ -11,18 +11,19 @@ w_p = 2 * np.pi * 8980 * np.sqrt(n)
 E_0 = 0.511e-3 / (c/w_p)
 e = 1.6e-19
 
-xi_min=-250.0
-xi_max=-50.0
+xi_min=-500.0
+xi_max=-0.0
 r_max=0.5
 
 font = {'weight': 'normal', 'size': 15}
 plt.rc('font', **font)
 
-h5 = '/unix/pdpwa/jchappell/lcode/multi_beam/plasma_state_1000/tb20000.h5'
+h5 = '/Users/jamiechappell/Documents/PhD/Simulations/lcode/multi_beam/' \
+     'two_beam/gap_100/tb20000.h5'
 
 Q, xi, x, y, px, py, pz = xi_r_map.h5import(h5)
 r = np.sqrt(x*x + y*y)  # mm
-H, xedges, yedges, xi_bin = xi_r_map.plot_xi_r_map(xi, r, Q)
+H, xedges, yedges, xi_bin = xi_r_map.plot_xi_r_map(xi, r, Q, h5)
 print H.shape
 
 
@@ -35,13 +36,14 @@ def FFT_analysis_beam_modulation(data):
 
         width = H.shape[0]
         print width
-        data = H[0]
+        data = H[0][0:2499]
         #data = np.mean(H, axis=0)
-        data_offaxis = H[int(round(2*width/5))]
+        data_offaxis = H[0][2500:4999]
 
         fft_sample = xi_bin*1e-3 # m
         fft_sample = 1./(fft_sample / c) # s^-1
         n_len = len(data)
+
         data_xi = np.linspace(xi_min, xi_max, len(data))
 
         freqvec = 2 * np.pi * np.linspace(0, fft_sample/2, n_len/2)
@@ -103,9 +105,9 @@ def FFT_analysis_beam_modulation(data):
         ax[1].plot(data_xi, data_offaxis, 'g')
         ax[1].set_xlabel(r'$\xi$ $/mm$')
         #ax[1].set_ylabel(r'$N_p$')
-        ax[1].set_xlim(xi_min, xi_max)
-        ax[2].plot(freqvec, abs(Y), 'r', label='On-axis FFT')
-        ax[2].plot(freqvec, abs(Z),'g', label='Off-axis FFT')
+        ax[1].set_xlim(xi_min, xi_max/2)
+        ax[2].plot(freqvec, abs(Y), 'r', label='Second beam FFT')
+        ax[2].plot(freqvec, abs(Z),'g', label='First beam FFT')
         ax[2].plot(pos_max, max_val, 'ro')
         ax[2].plot(pos_max_oa, max_val_oa, 'go')
         ax[2].annotate(delta_string, xy=(pos_max, 1.1 * max_val))
