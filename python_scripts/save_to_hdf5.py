@@ -19,7 +19,7 @@ def save_to_hdf5(location, lower, upper, step):
 
     file_list = []
 
-    numbers = np.arange(lower, upper, step)
+    numbers = np.arange(lower, upper + 1, step)
 
     for i in numbers:
         number_string = '{0:05}'.format(i)
