@@ -96,9 +96,9 @@ if __name__ == '__main__':
     # store values given in input
 
     location = arguments.location
-    lower = arguments.lower
-    upper = arguments.upper
-    step = arguments.step
+    lower = float(arguments.lower)
+    upper = float(arguments.upper)
+    step = float(arguments.step)
 
     # convert beam files
 
