@@ -1,8 +1,8 @@
 import cv2
 import os
 
-image_folder = '/unix/pdpwa/jchappell/lcode/multi_beam/plasma_state_1000' \
-               '/beam_images'
+image_folder = '/unix/pdpwa/jchappell/lcode/multi_beam/two_beam' \
+               '/beam_evolution_images'
 video_name = 'beam_evolution.avi'
 
 images = [img for img in os.listdir(image_folder) if img.endswith(".png")]

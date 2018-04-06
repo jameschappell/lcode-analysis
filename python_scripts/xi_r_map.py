@@ -56,7 +56,7 @@ def plot_xi_r_map(xi_in, r_in, Q_in, filename, xi_min=-500.0, xi_max=0.0,
 
     plt.tight_layout()
     file_save_name = filename + '.png'
-    plt.savefig(file_save_name)
+    #plt.savefig(file_save_name)
     #plt.show()
 
     return H, xedges, yedges, xi_bin
@@ -64,20 +64,20 @@ def plot_xi_r_map(xi_in, r_in, Q_in, filename, xi_min=-500.0, xi_max=0.0,
 
 # for saving beam images
 
-numbers = np.arange(2000, 50001, 2000)
-file_list = []
-location = '/unix/pdpwa/jchappell/lcode/multi_beam/two_beam' \
-              '/tb'
-
-for i in numbers:
-    number_string = '{0:05}'.format(i)
-    string = location + number_string + '.h5'
-    file_list.append(string)
-
-for j in file_list:
-
-    Q, xi, x, y, px, py, pz = h5import(j)
-    r = np.sqrt(x * x + y * y)  # mm
-    path_string = os.path.splitext(j)[0]
-    H, xedges, yedges, xi_bin = plot_xi_r_map(xi, r, Q, path_string)
-
+# numbers = np.arange(2000, 50001, 2000)
+# file_list = []
+# location = '/Users/jamiechappell/Documents/PhD/Simulations/lcode/multi_beam/' \
+#            'plasma_state_1000/tb'
+#
+# for i in numbers:
+#     number_string = '{0:05}'.format(i)
+#     string = location + number_string + '.h5'
+#     file_list.append(string)
+#
+# for j in file_list:
+#
+#     Q, xi, x, y, px, py, pz = h5import(j)
+#     r = np.sqrt(x * x + y * y)  # mm
+#     path_string = os.path.splitext(j)[0]
+#     H, xedges, yedges, xi_bin = plot_xi_r_map(xi, r, Q, path_string)
+#
