@@ -131,24 +131,22 @@ if __name__ == "__main__":
             This is the minimum value of xi to plot between.''')
 
     parser.add_argument('--xi_max', dest='xi_max', default=None, help='''
-                This is the maximum value of xi to plot between.''')
+            This is the maximum value of xi to plot between.''')
 
     parser.add_argument('--xi_bin', dest='xi_bin', default=None, help='''
-                This is the value of the desired bin width in xi for 
-                plotting.''')
+            This is the value of the desired bin width in xi for plotting.''')
 
     parser.add_argument('--r_max', dest='r_max', default=None, help='''
-                This is the maximum value of r to plot over.''')
+            This is the maximum value of r to plot over.''')
 
     parser.add_argument('--r_bin', dest='r_bin', default=None, help='''
-                This is the value of the desired bin width of r for 
-                plotting.''')
+            This is the value of the desired bin width of r for plotting.''')
 
     parser.add_argument('--batch', dest='batch', default=False, help='''
-                This toggles batch mode for producing plots for a group of 
-                images. Plot previews will not be shown. Can be either True 
-                or False. Default is False.
-                ''')
+            This toggles batch mode for producing plots for a group of images. 
+            Plot previews will not be shown. Can be either True or False. 
+            Default is False.
+            ''')
 
     arguments = parser.parse_args()
 
