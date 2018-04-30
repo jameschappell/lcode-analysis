@@ -180,7 +180,7 @@ def make_environment(resultsdir, charge, sigma_x, sigma_y, sigma_z):
     sg = os.path.join(resultsdir, 'lcode.cfg')
     fh = open(sg, "wb")
 
-    beam_charge_string = 'ampl=' + format(normalised_current, '.2f')
+    beam_charge_string = 'ampl=' + format(normalised_current, '.3f')
     lcode_cfg1 = string.replace(lcode_cfg, 'electron_beam_charge',
                                 beam_charge_string)
 
@@ -190,7 +190,7 @@ def make_environment(resultsdir, charge, sigma_x, sigma_y, sigma_z):
     ss = os.path.join(resultsdir, 'sub_script.bash')
     fs = open(ss, "wb")
 
-    name_string = '#$ -N charge_' + format(normalised_current, '.2f') + '_pC'
+    name_string = '#$ -N charge_' + format(charge, 'i') + '_pC'
     subscript1 = string.replace(subscript, 'name_def', name_string)
 
     work_dir_string = '#$ -wd ' + os.getcwd() + '/' + res_dir
@@ -251,7 +251,7 @@ if __name__ == "__main__":
 
         os.chdir(cwd)
         print "Beam Charge: %s" % (charge)
-        res_dir = 'charge_' + format(charge, '.2f') + '_pC'
+        res_dir = 'charge_' + format(charge, 'i') + '_pC'
         print "Making directory: ", res_dir
         if os.path.isdir(res_dir) is False:
             os.mkdir(res_dir)
