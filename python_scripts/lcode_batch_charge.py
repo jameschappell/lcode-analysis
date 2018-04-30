@@ -9,7 +9,7 @@ lcode_cfg = '''
 geometry = c
 window-width = 6;       r-step = 0.01
 window-length = 7;     xi-step = 0.01
-time-limit = 1000000.1; time-step = 25
+time-limit = 1000000.1; time-step = 50
 
 continuation = n # Plasma continuation (no/beam/longplasma, n/y/Y)
 # Particle beams:
@@ -55,12 +55,12 @@ output-Ez-minmax = n;       output-Ez-local = n
 output-Phi-minmax = n;      output-Phi-local = n
 output-beam-survival = n;   output-survival-xi = "-2, -4, -6, -8, -10, -12"
 output-beam-slices = n;     output-slices-xi = "-2, -4, -6, -8, -10, -12"
-write-beam-particles = y;   write-beam-particles-each = 20
-write-beam-particles-from = -2;  write-beam-particles-to = -5
+write-beam-particles = y;   write-beam-particles-each = 40
+write-beam-particles-from = 0;  write-beam-particles-to = -5
 output-lost-particles = n
-write-beam-particles-q-m-from = 0;  write-beam-particles-q-m-to = 0
+write-beam-particles-q-m-from = 0.5;  write-beam-particles-q-m-to = 1.5
 # Periodical diagnostics:
-output-time-period = 10000
+output-time-period = 20000
 #  Colored maps: (Er,Ef,Ez,Phi,Bf,Bz,pr,pf,pz,pri,pfi,pzi
 #                 nb,ne,ni,Wf,dW,SEB,Sf,Sf2,Sr,Sr2,dS,dS2):
 colormaps-full = ""
@@ -113,7 +113,7 @@ substepping-output-f(xi) = n
 substepping-output-particles = n
 substepping-output-particles-area = f
 # Saving run state periodically:
-saving-period = 100000
+saving-period = 200000
 save-beam = n
 save-plasma = n
 # Logging preferences (error/warning/info/debug, e/w/i/d):
@@ -131,7 +131,10 @@ subscript = '''
 
 #$ -S /bin/bash
 
-#$ -l h_rt=01:30:00
+module unload mpi
+module load mpi/openmpi/3.0.0/intel-2017
+
+#$ -l h_rt=02:30:00
 #$ -l mem=4G
 name_def
 #$ -m be
