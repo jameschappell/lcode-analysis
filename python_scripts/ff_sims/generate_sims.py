@@ -308,7 +308,7 @@ if __name__ == "__main__":
         print "Copy template files: "
 
         make_simulations(density, energy, energyspread, sigr, sigz,
-                         charge, cwd + directory)
+                         charge, cwd + "/" + directory)
         os.chdir(directory)
         os.mkdir('logs')
         run_command = "qsub sub_script.bash"
