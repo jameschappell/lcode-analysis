@@ -115,7 +115,10 @@ def make_simulations(density, energy, energyspread, sigr, sigz,
     subscript1 = string.replace(subscript, 'DEFworkdir', work_dir_string)
     subscript2 = string.replace(subscript1, 'DEFchangedir', work_dir_string)
 
-    fs.write(subscript2)
+    name_string = 'dens_' + format(density, '.2e')
+    subscript3 = string.replace(subscript2, 'DEFname', name_string)
+
+    fs.write(subscript3)
     fs.close()
 
 
@@ -162,7 +165,7 @@ output-time-period = 1
 #                 nb,ne,ni,Wf,dW,SEB,Sf,Sf2,Sr,Sr2,dS,dS2):
 colormaps-full = ""
 colormaps-subwindow = "Er,Ez,Phi,Bf,ne,ni,nb,pz"
-colormaps-type = y
+colormaps-type = n
 drawn-portion = 1 # Drawn portion of the simulation window
 subwindow-xi-from = 0;		subwindow-xi-to = -10
 subwindow-r-from = 0;		subwindow-r-to = 5
@@ -225,7 +228,7 @@ module load mpi/openmpi/3.0.0/intel-2017
 #$ -l h_rt=48:00:00
 #$ -l mem=0.5G
 ### -l tmpfs=15G
-#$ -N ebeamdetail
+#$ -N DEFname
 #$ -m be
 #$ -M james.chappell.17@ucl.ac.uk
 #$ -wd DEFworkdir
@@ -313,4 +316,4 @@ if __name__ == "__main__":
         os.mkdir('logs')
         run_command = "qsub sub_script.bash"
         print run_command
-        #os.system(run_command)
+        os.system(run_command)
